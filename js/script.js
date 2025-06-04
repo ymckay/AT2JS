@@ -1,62 +1,65 @@
-// Search Cocktail Page
+// Random Cocktail Page
+// script.js
+// This script handles the functionality of the "random cocktail" page.
+// It fetches a random cocktail from TheCocktailDB API, displays its image and name,
+// applies animation using GSAP, and also adjusts the navbar visibility on scroll.
 
-// 1. find API
+//Random Cocktail Feature
+
+// API to fetch a random cocktail
 const randomCocktailUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-// 2. find the document
+// find the document
 const randomCocktailImage = document.getElementById("randomCocktailImage");
-// 3. get cocktail name
 const randomCocktailName = document.getElementById("randomCocktailName");
-// 4. get random button
 const newRandom = document.getElementById('newRandom');
 
-// 5. add eventListener
+// when button is clicked, fetch a new cocktail
 newRandom.addEventListener("click", function (e){
 e.preventDefault();
 fetchRandomCocktail();
 });
 
-
+// fetch a random cocktail from the API and update the DOM with image and name.
+// also animate the drink name using GSAP.
 async function fetchRandomCocktail() {
   try {
     // get data from the api
     const response = await fetch(randomCocktailUrl);
+    // convert to json
     const data = await response.json();
-    // get the first drink from the data
+    // get the drink object
     const drink = data.drinks[0];
 
-    // show the drink image and name
+    // update drink image and name
     randomCocktailImage.src = drink.strDrinkThumb;
     randomCocktailImage.alt = drink.strDrink;
     randomCocktailName.textContent = drink.strDrink;
 
-gsap.fromTo(
-  ".cocktail-name",
-  { y: -30 }, // ← アニメーションのスタート状態
-  { y: 20, duration: 2, ease: "bounce" } // ← ゴールの状態
-);
-  } catch (error) {
-    // show error if something goes wrong
-    console.error("Error fetching random cocktail:", error);
-  }
-}
+    // animate the drink name
+    gsap.fromTo(
+      ".cocktail-name",
+      { y: -30 },
+      { y: 20, duration: 2, ease: "bounce" } 
+    );
+      } catch (error) {
+        // show error if something goes wrong
+        console.error("Error fetching random cocktail:", error);
+      }
+    }
 
-// run this when the page is loaded
-window.onload = fetchRandomCocktail;
+    // automatically load a cocktail on page load
+    window.onload = fetchRandomCocktail;
 
-
-// gsap
-// gsap.to (".cocktail-name",{
-//   y:50,
-//   duration:2,
-//   ease:"bounce",
-// });
-
-// handle Navbar on Scroll
+// Navbar Scroll Behaviour
+// find the document
 const navbar = document.querySelector('.navbar');
+// handle scroll behaviour of the navbar.
+// adds/removes classes based on scroll position.
 const handleScroll = ()=> {
   const atTop = window.scrollY === 0;
   navbar.classList.toggle('visible-bar', atTop);
   navbar.classList.toggle('hidden-bar', !atTop);
 };
+// attach scroll event
 window.addEventListener('scroll', ()=> requestAnimationFrame(handleScroll));
 

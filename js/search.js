@@ -1,4 +1,17 @@
+// search.js
+// This script handles the Cocktail Search page.
+// It fetches cocktail data from TheCocktailDB API based on the user's search keyword,
+// displays matching results as Bootstrap cards, and adds scroll b=behaviour to the navbar.
+
+// cocktailSearch Class
+// @class
 class CocktailSearch {
+  // @constructor
+  // @param {string} name - Name of the cocktail
+  // @param {string} image - Image URL of the cocktail
+  // @param {Array<string>} ingredients - List of ingredients
+  // @param {string} link - External link to full recipe
+
   constructor(name, image, ingredients, link) {
     this.name = name;
     this.image = image;
@@ -7,42 +20,43 @@ class CocktailSearch {
   }
 }
 
-// 1. find API
-const searchUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-// 2. find the document
-// const searchImage = document.getElementById("searchImage");
-// const searchName = document.getElementById("searchName");
-// const newSearch = document.getElementById("newSearch");
+// API and DOM setup
 
-// 3. add eventListener to search form
+// find API
+const searchUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+
+// add eventListener to search form
 document.getElementById("searchForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // フォームのデフォルト動作を止める
+  // prevent form from submitting normally
+  e.preventDefault(); 
   const query = document.getElementById("searchInput").value.trim();
   if (query !== "") {
-    // document.getElementById("hero").style.display = "none"; // heroイメージを非表示
-    fetchSearchCocktail(); // API呼び出し関数に変更！
+    // fetch matching cocktail data
+    fetchSearchCocktail();
   }
 });
 
-// 4. fetch cocktail data from API
+// fetch cocktail data from API
+// fetch cocktail data from theCocktailDB based on user input.
+// if found, convert to CocktailSearch objects and display them.
 async function fetchSearchCocktail() {
   const keyword = document.getElementById("searchInput").value.trim();
-  // 5. check if user entered a keyword
+  // check if user entered a keyword
   if (!keyword) {
     alert("Please enter a cocktail name.");
     return;
   }
 
   try {
-    // 6. fetch data from the API
+    // fetch data from the API
     const response = await fetch(searchUrl + keyword);
     const data = await response.json();
-    // 7. check if cocktail exists
+    // check if cocktail exists
     if (!data.drinks) {
       alert("No cocktail found");
       return;
     }
-    // 8. get ingredients of up to 15 cocktails
+    // get ingredients of up to 20 cocktails and their ingredients
     const cocktails = data.drinks.slice(0, 20).map((drink) => {
       const ingredients = [];
       for (let i = 1; i <= 20; i++) {
@@ -51,43 +65,28 @@ async function fetchSearchCocktail() {
           ingredients.push(ingredient);
         }
       }
-      // 9. return cocktail object
+      // return cocktail object
       return new CocktailSearch(
         drink.strDrink, 
         drink.strDrinkThumb, 
         ingredients,
         `https://www.thecocktaildb.com/drink.php?c=${drink.idDrink}`,
       );
-      //   name: drink.strDrink,
-      //   image: drink.strDrinkThumb,
-      //   ingredients: ingredients,
-      //   link: `https://www.thecocktaildb.com/drink.php?c=${drink.idDrink}`,
-      // };
     });
-    // 10. display all cocktail cards
+    // display all cocktail cards
     displayCocktailList(cocktails);
   } catch (error) {
-    // 11. handle error
+    // handle error
     console.error("Error fetching cocktail:", error);
   }
 }
 
-// 12. display one selected cocktail(no used here)
-// function displayCocktail(cocktail) {
-//   const searchImage = document.getElementById("searchImage");
-//   const searchName = document.getElementById("searchName");
-//   const searchIngredients = document.getElementById("searchIngredients");
-
-//   searchImage.src = cocktail.image;
-//   searchImage.alt = cocktail.name;
-//   searchName.textContent = cocktail.name;
-//   searchIngredients.innerHTML = `<strong>Ingredients:</strong><br>${cocktail.ingredients.join(", ")}`;
-// }
-
-// display list of cocktails as bootstrap cards
+// Display Cocktail Cards
+// display list of cocktails as bootstrap cards.
+// @param {CocktailSearch[]} cocktails - Array of cocktail objects
 function displayCocktailList(cocktails) {
   const container = document.getElementById("searchResults");
-  container.innerHTML = ""; // 前の結果をクリア
+  container.innerHTML = ""; // clear previous results
 
   cocktails.forEach((cocktail) => {
     const card = document.createElement("div");
@@ -117,8 +116,8 @@ function displayCocktailList(cocktails) {
   });
 }
 
-
-// handle Navbar on Scroll
+// Navbar Scroll Behaviour
+// handle Navbar visibility based on Scroll position
 const navbar = document.querySelector('.navbar');
 const handleScroll = ()=> {
   const atTop = window.scrollY === 0;
