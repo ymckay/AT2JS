@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- custom css -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      crossorigin="anonymous"
+    >
+    <!-- bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="./img/local_bar.svg" type="image/svg+xml">
+    <!-- bootstrap js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- js -->
+    <script src="./js/contact.js" defer></script>
+    <!-- page title -->
+    <title>The Cocktail Lab</title>
+  </head>
+
+  <body class="contact-page">
+    <!-- Main page showing a random cocktail to explore -->
+    <!-- nav -->
+    <nav class="navbar navbar-expand-lg bg-white shadow px-4 py-2 sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html"><img src="./img/local_bar.svg" alt="icon" width="24" height="24" />Cocktail Lab</a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav d-flex ms-auto">
+            <li class="nav-item hover-scale">
+              <a class="nav-link" aria-current="page" href="./index.html">home</a>
+            </li>
+            <li class="nav-item hover-scale">
+              <a class="nav-link" href="./search.html">search</a>
+            </li>
+            <li class="nav-item hover-scale">
+              <a class="nav-link active" aria-current="page" href="./contact.html">contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- end of nav -->
+
+
+  <div class="container">
+    <form class="form-wrapper needs-validation" novalidate>
+      <h2 class="mb-4 text-center">Contact Us</h2>
+
+      <div class="mb-3">
+        <label for="validationName" class="form-label">Your name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationName"
+          placeholder="e.g. Sammy Smith"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Please enter your name.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="validationEmail" class="form-label">Your email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="validationEmail"
+          placeholder="e.g. example@gmail.com"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="validationMessage" class="form-label">Message</label>
+        <textarea
+          class="form-control"
+          id="validationMessage"
+          rows="4"
+          placeholder="What's on your mind?"
+          required
+        ></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Please enter a message.</div>
+      </div>
+
+      <div class="d-grid">
+          <button class="custom-hover btn btn-outline-dark py-2 mt-3" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+    <footer class="text-complementary py-5 mt-5 bg-accent">
+      <div class="container text-center">
+        <p class="mb-1 fs-5 fw-bold">Cocktail Lab</p>
+        <p class="mb-1">123 Bar Street, Moorabbin, VIC</p>
+        <p class="mb-1">© 2025 Cocktail Bar All rights reserved.</p>
+        <div class="mt-4">
+          <a href="https://www.instagram.com/" class="me-3 fs-4 hover-scale"><i class="sns-icon bi bi-instagram"></i></a>
+          <a href="https://www.facebook.com/" class="me-3 fs-4 hover-scale"><i class="sns-icon bi bi-facebook"></i></a>
+          <a href="https://www.youtube.com/" class="fs-4 hover-scale"><i class="sns-icon bi bi-youtube"></i></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
