@@ -85,6 +85,11 @@ async function fetchSearchCocktail() {
 // display list of cocktails as bootstrap cards.
 // @param {CocktailSearch[]} cocktails - Array of cocktail objects
 function displayCocktailList(cocktails) {
+  // hide the initial placeholder message
+  const placeholderContainer = document.getElementById("placeholderContainer");
+  if (placeholderContainer) {
+  placeholderContainer.style.display = "none";
+  }
   const container = document.getElementById("searchResults");
   container.innerHTML = ""; // clear previous results
 

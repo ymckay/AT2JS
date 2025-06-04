@@ -44,7 +44,7 @@
   <body class="home">
     <!-- Main page showing a random cocktail to explore -->
     <!-- nav -->
-    <nav class="navbar navbar-expand-lg py-2 px-4 sticky-top bg-white shadow">
+    <nav role="navigation" area-label="main navigation" class="navbar navbar-expand-lg py-2 px-4 sticky-top bg-white shadow">
       <div class="container-fluid">
         <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html"><img src="./img/local_bar.svg" alt="icon" width="24" height="24" />Cocktail Lab</a>
         <button
@@ -81,7 +81,7 @@
         <div class="row align-items-center">
           <!-- left - image -->
           <div id="randomCocktail" class="col-12 col-md-5 mb-4 mb-md-0 text-center">
-            <img id="randomCocktailImage" class="img-fluid w-100 h-100 py-4" src="" alt="Random Cocktail Image">
+            <img id="randomCocktailImage" class="img-fluid w-100 h-100 py-4" src="" alt="Random Cocktail of the display">
           </div>
           <!-- right - text and buttons-->
           <div class="col-12 col-md-7 px-3 px-md-5 text-center text-md-start">
@@ -90,26 +90,26 @@
 
             <!-- h1 for tablet -->
             <h1 class="headingTitle d-none d-md-block">Here is your cocktail of the day!</h1>
-            <h2 id="randomCocktailName" class="cocktail-name pb-5 mt-2 mb-5 fw-bold"></h2>
+            <h2 id="randomCocktailName" aria-live="polite" class="cocktail-name pb-5 mt-2 mb-5 fw-bold"></h2>
             <p>Not sure what to drink? Try a random one or search for your favourite!</p>
             <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start">
-              <a id="newRandom" href="#" class="custom-hover btn btn-outline-dark mt-3 me-sm-3">Show me another</a>
-              <a href="search.html" class="custom-hover btn btn-outline-dark mt-3">Search for More</a>
+              <a id="newRandom" href="#" aria-label="Get a new random cocktail" class="custom-hover btn btn-outline-dark mt-3 me-sm-3">Show me another</a>
+              <a href="search.html" aria-label="Go to cocktail search page" class="custom-hover btn btn-outline-dark mt-3">Search for More</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="text-complementary py-5 mt-5 bg-accent">
+    <footer role="contentinfo" class="text-complementary py-5 mt-5 bg-accent">
       <div class="container text-center">
         <p class="mb-1 fs-5 fw-bold">Cocktail Lab</p>
         <p class="mb-1">123 Bar Street, Moorabbin, VIC</p>
         <p class="mb-1">© 2025 Cocktail Bar  All rights reserved.</p>
         <div class="mt-4">
-          <a href="https://www.instagram.com/" target="_blank" class="me-3 fs-4 hover-scale"><i class="sns-icon bi bi-instagram"></i></a>
-          <a href="https://www.facebook.com/" target="_blank" class="me-3 fs-4 hover-scale"><i class="sns-icon bi bi-facebook"></i></a>
-          <a href="https://www.youtube.com/" target="_blank" class="fs-4 hover-scale"><i class="sns-icon bi bi-youtube"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" aria-label="Visit Instagram" class="me-3 fs-4 hover-scale"><i class="sns-icon bi bi-instagram"></i></a>
+          <a href="https://www.facebook.com/" target="_blank" aria-label="Visit Facebook" class="me-3 fs-4 hover-scale"><i class="sns-icon bi bi-facebook"></i></a>
+          <a href="https://www.youtube.com/" target="_blank" aria-label="Visit YouTube" class="fs-4 hover-scale"><i class="sns-icon bi bi-youtube"></i></a>
         </div>
       </div>
     </footer>
