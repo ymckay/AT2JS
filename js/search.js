@@ -121,12 +121,17 @@ function displayCocktailList(cocktails) {
   });
 }
 
-// Navbar Scroll Behaviour
-// handle Navbar visibility based on Scroll position
+// handle Navbar on Scroll
+// This section updates the navbar style based on scroll position.
+// When the user scrolls down, the navbar gets a different class.
+
 const navbar = document.querySelector('.navbar');
+// Toggle navbar classes based on scroll position
 const handleScroll = ()=> {
   const atTop = window.scrollY === 0;
+  // add "visible-bar" at the top, "hidden-bar" when scrolling
   navbar.classList.toggle('visible-bar', atTop);
   navbar.classList.toggle('hidden-bar', !atTop);
 };
+// Listen for scroll and apply changes using requestAnimationFrame
 window.addEventListener('scroll', ()=> requestAnimationFrame(handleScroll));

@@ -46,20 +46,22 @@ async function fetchRandomCocktail() {
         console.error("Error fetching random cocktail:", error);
       }
     }
-
     // automatically load a cocktail on page load
     window.onload = fetchRandomCocktail;
 
-// Navbar Scroll Behaviour
-// find the document
+
+// handle Navbar on Scroll
+// This section updates the navbar style based on scroll position.
+// When the user scrolls down, the navbar gets a different class.
+
 const navbar = document.querySelector('.navbar');
-// handle scroll behaviour of the navbar.
-// adds/removes classes based on scroll position.
+// Toggle navbar classes based on scroll position
 const handleScroll = ()=> {
   const atTop = window.scrollY === 0;
+  // add "visible-bar" at the top, "hidden-bar" when scrolling
   navbar.classList.toggle('visible-bar', atTop);
   navbar.classList.toggle('hidden-bar', !atTop);
 };
-// attach scroll event
+// Listen for scroll and apply changes using requestAnimationFrame
 window.addEventListener('scroll', ()=> requestAnimationFrame(handleScroll));
 
