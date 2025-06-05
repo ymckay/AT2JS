@@ -34,18 +34,24 @@ const searchUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 document.getElementById("searchForm").addEventListener("submit", function (e) {
   // prevent form from submitting normally
   e.preventDefault(); 
-  const query = document.getElementById("searchInput").value.trim();
-  if (query !== "") {
-    // fetch matching cocktail data
-    fetchSearchCocktail();
+  const input = document.getElementById('searchInput');
+  input.classList.remove('error-placeholder');
+  const query = input.value.trim();
+  if (query === "") {
+    input.value = "";
+    input.placeholder = "Please enter a cocktail name.";
+    input.classList.add("error-placeholder"); 
+    return;
   }
-});
+  input.value = "";
+  // fetch matching cocktail data
+  fetchSearchCocktail(query); 
+  });
 
 // fetch cocktail data from API
 // fetch cocktail data from theCocktailDB based on user input.
 // if found, convert to CocktailSearch objects and display them.
-async function fetchSearchCocktail() {
-  const keyword = document.getElementById("searchInput").value.trim();
+async function fetchSearchCocktail(keyword) {
   // check if user entered a keyword
   if (!keyword) {
     alert("Please enter a cocktail name.");
@@ -58,9 +64,14 @@ async function fetchSearchCocktail() {
     const data = await response.json();
     // check if cocktail exists
     if (!data.drinks) {
-      alert("No cocktail found");
+      const input = document.getElementById('searchInput');
+      input.value = "";
+      input.placeholder = "No cocktail found.";
+      input.classList.add("error-placeholder");
       return;
     }
+    const input = document.getElementById('searchInput');
+    input.value = ""; 
     // get ingredients of up to 20 cocktails and their ingredients
     const cocktails = data.drinks.slice(0, 20).map((drink) => {
       const ingredients = [];

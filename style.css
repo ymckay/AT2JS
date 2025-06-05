@@ -45,6 +45,10 @@ body {
 h1, h2, h3 {
   font-family: "Bebas Neue", Arial, Helvetica, sans-serif;
 }
+form h1,
+nav h1, {
+  font-size: 2rem;
+}
 
 h2.cocktail-name {
   font-size: 4rem;
@@ -80,6 +84,11 @@ button.custom-hover:hover{
   color: var(--complementary-color);
 }
 
+.contact-page {
+ background: url(./img/qui-nguyen-S6atLH5Rf0U-unsplash.jpg)center center/cover no-repeat;
+  
+}
+
 /* SNS Icon Hover */
 .sns-icon {
   color: var(--complementary-color);
@@ -98,7 +107,13 @@ button.custom-hover:hover{
   padding: 30px;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
+}
+
+input.error-placeholder::placeholder {
+  color: red;
 }
 
 /* Random Cocktail Image */
@@ -225,3 +240,4 @@ nav.navbar {
 .hidden-bar {
   transform:translateY(-100%);
 }
+
