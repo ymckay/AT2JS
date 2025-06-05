@@ -1,8 +1,12 @@
-// Random Cocktail Page
-// script.js
-// This script handles the functionality of the "random cocktail" page.
-// It fetches a random cocktail from TheCocktailDB API, displays its image and name,
-// applies animation using GSAP, and also adjusts the navbar visibility on scroll.
+// File: script.js
+// Author: ymckay
+// Date: 2025-06-04
+// Version: 1.0
+// Purpose: This script handles the functionality of the "Random Cocktail" page. It fetches a random cocktail from TheCocktailDB API, displays it with animation, and manages the navbar behavior on scroll.
+// Known bugs: None
+// License: For educational use only
+
+
 
 //Random Cocktail Feature
 

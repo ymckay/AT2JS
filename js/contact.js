@@ -1,6 +1,14 @@
+// File: contact.js
+// Author: ymckay
+// Date: 2025-06-04
+// Version: 1.0
+// Purpose: This script handles validation and submission of the contact form. It validates inputs using Bootstrap classes and downloads the form content as a .txt file. It also manages navbar behavior on scroll.
+// Known bugs: None
+// License: For educational use only
+
+
+
 // Contact Form Validation
-// This script enables Bootstrap-style validation
-// for the contact form on the page.
     (() => {
       'use strict';
       // select all forms that need validation

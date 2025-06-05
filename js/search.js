@@ -1,7 +1,12 @@
-// search.js
-// This script handles the Cocktail Search page.
-// It fetches cocktail data from TheCocktailDB API based on the user's search keyword,
-// displays matching results as Bootstrap cards, and adds scroll b=behaviour to the navbar.
+// File: search.js
+// Author: ymckay
+// Date: 2025-06-04
+// Version: 1.0
+// Purpose: This script handles the Cocktail Search page. It fetches cocktail data from TheCocktailDB API based on the user's search keyword, displays matching results as Bootstrap cards, and manages navbar visibility on scroll.
+// Known bugs: None
+// License: For educational use only
+
+
 
 // cocktailSearch Class
 // @class
