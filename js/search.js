@@ -35,6 +35,7 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
   // prevent form from submitting normally
   e.preventDefault(); 
   const input = document.getElementById('searchInput');
+   input.placeholder = "Search Cocktails...";
   input.classList.remove('error-placeholder');
   const query = input.value.trim();
   if (query === "") {
@@ -62,15 +63,19 @@ async function fetchSearchCocktail(keyword) {
     // fetch data from the API
     const response = await fetch(searchUrl + keyword);
     const data = await response.json();
+    const input = document.getElementById('searchInput');
+    const container = document.getElementById("searchResults");
+    container.innerHTML = `<div id="placeholder" class="text-center py-5 text-muted w-100">
+      <img src="./img/local_bar.svg" class="shake-glass" alt="Loading" width="32" height="32">
+        <p class="mt-3">Search for your favorite cocktail here…</p>
+      </div>`;  
     // check if cocktail exists
     if (!data.drinks) {
-      const input = document.getElementById('searchInput');
       input.value = "";
       input.placeholder = "No cocktail found.";
       input.classList.add("error-placeholder");
       return;
     }
-    const input = document.getElementById('searchInput');
     input.value = ""; 
     // get ingredients of up to 20 cocktails and their ingredients
     const cocktails = data.drinks.slice(0, 20).map((drink) => {

@@ -1,55 +1,78 @@
 // File: contact.js
 // Author: ymckay
-// Date: 2025-06-04
-// Version: 1.0
-// Purpose: This script handles validation and submission of the contact form. It validates inputs using Bootstrap classes and downloads the form content as a .txt file. It also manages navbar behavior on scroll.
-// Known bugs: None
+// Date: 2025-06-05
+// Version: 1.1
+// Purpose:
+//   This script handles validation and submission behavior for the contact form.
+//   It applies custom validation for name, email, and message fields using Bootstrap styles,
+//   including instant feedback as the user types.
+//   It ensures real-time feedback and prevents form submission if inputs are invalid.
+// Known Issues: None
 // License: For educational use only
 
+(() => {
+  'use strict';
 
+  // Select all forms that require validation
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    const nameInput = form.querySelector('#validationName');
+    const emailInput = form.querySelector('#validationEmail');
+    const messageInput = form.querySelector('#validationMessage');
 
-// Contact Form Validation
-    (() => {
-      'use strict';
-      // select all forms that need validation
-      const forms = document.querySelectorAll('.needs-validation');
-      // add validation to each form
-      Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-          // if the form is not valid, stop submission
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          // add bootstrap class to show validation feedback
-          form.classList.add('was-validated');
-        }, false);
+    // Function to apply custom validation rules
+    const validateInputs = () => {
+      const nameValue = nameInput.value.trim();
+      const emailValue = emailInput.value.trim();
+      const messageValue = messageInput.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate email format
+      if (!emailPattern.test(emailValue)) {
+        emailInput.setCustomValidity('Please enter a valid email address.');
+      } else {
+        emailInput.setCustomValidity('');
+      }
+
+      // Validate name: at least 3 characters
+      if (nameValue.length < 3) {
+        nameInput.setCustomValidity('Name must be at least 3 characters.');
+      } else {
+        nameInput.setCustomValidity('');
+      }
+
+      // Validate message: at least 3 characters
+      if (messageValue.length < 3) {
+        messageInput.setCustomValidity('Message must be at least 3 characters.');
+      } else {
+        messageInput.setCustomValidity('');
+      }
+    };
+
+    // Enable real-time validation feedback as user types
+    [nameInput, emailInput, messageInput].forEach(input => {
+      input.addEventListener('input', () => {
+        validateInputs();
+        form.classList.add('was-validated'); // Trigger Bootstrap styling
       });
-    })();
+    });
 
-// Handle contact form submission and save data as a .txt file    
-document.querySelector('form').addEventListener('submit', (e) => {
-  // stop the form from refreshing the page
-  e.preventDefault();
-  // get input values from the form
-  const name = document.getElementById('validationName').value;
-  const email = document.getElementById('validationEmail').value;
-  const message = document.getElementById('validationMessage').value;
-  // format the content to be saved
-  const content = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
-  // create a plain text file using Blob
-  const blob = new Blob([content], { type: 'text/plain' });
-  // generate a download link for the file
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  // file name for download
-  a.download = 'contact-message.txt';
-  // trigger the download
-  a.click();
-  // clean up the temporary URL
-  URL.revokeObjectURL(url);
-});
+    // On form submission
+    form.addEventListener('submit', event => {
+      validateInputs();
+
+      // Prevent submission if form is invalid
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      // Add Bootstrap validation styling
+      form.classList.add('was-validated');
+    });
+  });
+})();
+
 
 
 // handle Navbar on Scroll
