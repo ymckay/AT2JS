@@ -66,7 +66,7 @@ async function fetchSearchCocktail(keyword) {
     const input = document.getElementById('searchInput');
     const container = document.getElementById("searchResults");
     container.innerHTML = `<div id="placeholder" class="text-center py-5 text-muted w-100">
-      <img src="./img/local_bar.svg" class="shake-glass" alt="Loading" width="32" height="32">
+      <img src="./img/local_bar2.png" class="shake-glass" alt="Loading" width="32" height="32">
         <p class="mt-3">Search for your favorite cocktail here…</p>
       </div>`;  
     // check if cocktail exists
