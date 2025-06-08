@@ -118,10 +118,10 @@ function displayCocktailList(cocktails) {
     const card = document.createElement("div");
     card.className = "col-12 col-md-6 d-flex";
     card.innerHTML = `
-  <div class="card mb-4 w-100 shadow-sm">
+  <div class="card w-100 shadow-sm">
     <div class="row g-0 h-100">
       <div class="col-4">
-        <img src="${cocktail.image}" class="img-fluid rounded-start h-100 object-fit-cover" alt="${cocktail.name}">
+        <img src="${cocktail.image}" class="img-fluid rounded-start object-fit-cover" alt="${cocktail.name}">
       </div>
       <div class="col-8 d-flex">
         <div class="card-body d-flex flex-column justify-content-between">
