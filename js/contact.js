@@ -4,11 +4,8 @@
 // Version: 1.2
 // Purpose:
 //   This script handles validation and submission behavior for the contact form.
-//   It applies custom validation for name, email, and message fields using Bootstrap styles,
-//   including instant feedback as the user types.
-//   It ensures real-time feedback and prevents form submission if inputs are invalid.
-//   Also shows a thank-you message upon successful submission.
-// Known Issues: None
+//   It applies Bootstrap validation and shows a thank-you message after successful submission.
+// Known bugs: None
 // License: For educational use only
 
 (() => {

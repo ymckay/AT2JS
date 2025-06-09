@@ -116,14 +116,14 @@ function displayCocktailList(cocktails) {
 
   cocktails.forEach((cocktail) => {
     const card = document.createElement("div");
-    card.className = "col-12 col-md-6 d-flex";
+    card.className = "col-12 col-lg-6 d-flex";
     card.innerHTML = `
   <div class="card w-100 shadow-sm">
     <div class="row g-0 h-100">
-      <div class="col-4">
+      <div class="col-5">
         <img src="${cocktail.image}" class="img-fluid rounded-start object-fit-cover" alt="${cocktail.name}">
       </div>
-      <div class="col-8 d-flex">
+      <div class="col-7 d-flex">
         <div class="card-body d-flex flex-column justify-content-between">
           <div>
             <h5 class="card-title">${cocktail.name}</h5>
