@@ -35,8 +35,8 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
   // prevent form from submitting normally
   e.preventDefault(); 
   const input = document.getElementById('searchInput');
-   input.placeholder = "Search Cocktails...";
-  input.classList.remove('error-placeholder');
+    input.placeholder = "Search Cocktails...";
+    input.classList.remove('error-placeholder');
   const query = input.value.trim();
   if (query === "") {
     input.value = "";
@@ -53,31 +53,55 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
 // fetch cocktail data from theCocktailDB based on user input.
 // if found, convert to CocktailSearch objects and display them.
 async function fetchSearchCocktail(keyword) {
-  // check if user entered a keyword
   if (!keyword) {
     alert("Please enter a cocktail name.");
     return;
   }
 
   try {
-    // fetch data from the API
     const response = await fetch(searchUrl + keyword);
     const data = await response.json();
+
     const input = document.getElementById('searchInput');
     const container = document.getElementById("searchResults");
-    container.innerHTML = `<div id="placeholder" class="text-center py-5 text-muted w-100">
-      <img src="./img/local_bar2.png" class="shake-glass" alt="Loading" width="32" height="32">
-        <p class="mt-3">Search for your favorite cocktail here…</p>
-      </div>`;  
-    // check if cocktail exists
+    const placeholder = document.getElementById("placeholderContainer");
+
+    // clear previous results
+    container.innerHTML = "";
+
     if (!data.drinks) {
+      // No results
       input.value = "";
       input.placeholder = "No cocktail found.";
       input.classList.add("error-placeholder");
+
+      // show instruction again
+      // const container = document.getElementById("searchResults");
+      // hide initial placeholder
+      const placeholder = document.getElementById("placeholderContainer");
+  if (placeholder) {
+    placeholder.style.display = "none";
+  }
+  container.innerHTML = `
+  <div id="placeholderContainer" class="row justify-content-center my-5">
+    <div class="col-md-8 text-center">
+      <div class="search-card p-4">
+        <img src="./img/emoji-frown.svg" class="frown mb-3" alt="Cocktail Icon" width="40" height="40">
+        <h2 class="fs-4 text-accent fw-semibold">No Cocktail Found</h2>
+        <p class="text-muted mb-0">Type a name above and find your favorite cocktail 🍸</p>
+      </div>
+    </div>
+  </div>
+  `;
+  // gsap animation for the Icon
+    gsap.from(".frown", { rotation: 180, duration: 3, scale:2 });
       return;
     }
-    input.value = ""; 
-    // get ingredients of up to 20 cocktails and their ingredients
+
+    // Results found
+    input.value = "";
+    placeholder.style.display = "none"; // hide the instruction
+
     const cocktails = data.drinks.slice(0, 20).map((drink) => {
       const ingredients = [];
       for (let i = 1; i <= 20; i++) {
@@ -86,18 +110,17 @@ async function fetchSearchCocktail(keyword) {
           ingredients.push(ingredient);
         }
       }
-      // return cocktail object
       return new CocktailSearch(
-        drink.strDrink, 
-        drink.strDrinkThumb, 
+        drink.strDrink,
+        drink.strDrinkThumb,
         ingredients,
-        `https://www.thecocktaildb.com/drink.php?c=${drink.idDrink}`,
+        `https://www.thecocktaildb.com/drink.php?c=${drink.idDrink}`
       );
     });
-    // display all cocktail cards
+
     displayCocktailList(cocktails);
+
   } catch (error) {
-    // handle error
     console.error("Error fetching cocktail:", error);
   }
 }
