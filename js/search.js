@@ -62,17 +62,17 @@ async function fetchSearchCocktail(keyword) {
       input.placeholder = "No cocktail found.";
       input.classList.add("error-placeholder");
 
-      container.innerHTML = `
-        <div class="row justify-content-center my-5">
-          <div class="col-md-8 text-center">
-            <div class="search-card p-4">
-              <img src="./img/emoji-frown.svg" class="frown mb-3" alt="No cocktail" width="40" height="40">
-              <h2 class="fs-4 text-accent fw-semibold">No Cocktail Found</h2>
-              <p class="text-muted mb-0">Try a different keyword 🍸</p>
-            </div>
-          </div>
-        </div>
-      `;
+  container.innerHTML = `
+  <div class="row justify-content-center my-5">
+    <div class="col-md-8">
+      <div class="search-card p-4 text-center">
+        <img src="./img/emoji-frown.svg" class="frown mb-3 d-block mx-auto" alt="No cocktail" width="40" height="40">
+        <h2 class="fs-4 text-accent fw-semibold">No Cocktail Found</h2>
+        <p class="text-muted mb-0">Try a different keyword 🍸</p>
+      </div>
+    </div>
+  </div>
+`;
 
       gsap.from(".frown", { rotation: 180, duration: 3, scale: 2 });
       return;
