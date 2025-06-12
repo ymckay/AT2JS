@@ -58,7 +58,7 @@
     <!-- navbar-->
     <nav class="navbar navbar-expand-lg bg-white shadow px-4 py-2 sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html"><img src="./img/local_bar.svg" alt="icon" width="24" height="24" />Cocktail Lab</a>
+        <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html"><img src="./img/local_bar.svg" class="shake-glass" alt="icon" width="24" height="24">Cocktail Lab</a>
         <button
           class="navbar-toggler border-0"
           type="button"
@@ -93,13 +93,14 @@
       <img
         src="./img/cocktail.jpg"
         class="img-fluid w-100"
-        style="height: 400px; object-fit: cover"
+        style="height: 350px; object-fit: cover"
         alt="a colourful cocktail on a bar counter"
       />
 
       <!-- search bar -->
       <div class="hero-content position-absolute top-50 start-50 translate-middle text-white w-100 px-3">
         <h1 class="mb-3">Find Your Cocktail</h1>
+        <p class="text-white fs-6 mb-4">Search by name, color, or ingredient—whatever inspires you!</p>
         <form id="searchForm" class="d-flex justify-content-center">
           <input 
             type="text" 
@@ -109,10 +110,26 @@
             aria-label="Type the name of a cocktail"
             aria-describedby="button-addon2"
           >
-          <button type="submit" class="btn btn-outline-light">Search</button>
+          <button type="submit" class="btn btn-outline-light rounded-pill">Search</button>
         </form>
       </div>
     </section>
+    <!-- Suggested Searches -->
+<div class="container text-center mt-4 mb-5" id="suggestedSearches">
+  <h3 class="fs-5 text-accent mt-5 mb-3">Popular picks:</h3>
+  <div class="d-flex flex-wrap justify-content-center gap-2">
+    <button class="btn btn-outline-secondary search-suggestion">Margarita</button>
+    <button class="btn btn-outline-secondary search-suggestion">Daiquiri</button>
+    <button class="btn btn-outline-secondary search-suggestion">Sangria</button>
+    <button class="btn btn-outline-secondary search-suggestion">Orange</button>
+    <button class="btn btn-outline-secondary search-suggestion">Blue</button>
+    <button class="btn btn-outline-secondary search-suggestion">Vodka</button>
+    <button class="btn btn-outline-secondary search-suggestion">Rum</button>
+    <button class="btn btn-outline-secondary search-suggestion">Lemon</button>
+    <button class="btn btn-outline-secondary search-suggestion">Strawberry</button>
+
+  </div>
+</div>
     <!-- end of search section -->
     <!-- before search -->
     <!-- <div id="placeholderContainer" class="row g-4 px-4 mt-4">
@@ -124,7 +141,7 @@
     <!-- end of before search -->
 
     <!-- Search Instruction Message -->
-<div id="placeholderContainer" class="row justify-content-center my-5">
+<!-- <div id="placeholderContainer" class="row justify-content-center my-5">
   <div class="col-md-8 text-center">
     <div class="search-card p-4">
       <img src="./img/local_bar.svg" class="shake-glass mb-3" alt="Cocktail Icon" width="40" height="40">
@@ -132,7 +149,7 @@
       <p class="text-muted mb-0">Type a name above and find your favorite cocktail 🍸</p>
     </div>
   </div>
-</div>
+</div> -->
 
     <!-- Search Results -->
     <div class="container  mx-auto row mt-4"></div>
