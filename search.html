@@ -56,27 +56,71 @@
 
   <body class="search-page">
     <!-- navbar-->
-    <nav class="navbar navbar-expand-lg bg-white shadow px-4 py-2 sticky-top">
+    <nav class="navbar navbar-expand-lg py-2 px-4 sticky-top bg-white shadow">
       <div class="container-fluid">
-        <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html"><img src="./img/local_bar.svg" class="shake-glass" alt="icon" width="24" height="24">Cocktail Lab</a>
-        <button
-          class="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav d-flex ms-auto">
+
+        <!-- Mobile: hamburger | logo | dark-mode -->
+        <div class="d-flex d-lg-none justify-content-between align-items-center w-100">
+          <!-- Hamburger -->
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavMobile"
+            aria-controls="navbarNavMobile"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Centered logo -->
+          <a class="navbar-brand fw-bold text-center m-0" href="./index.html">
+            <img class="cocktail-icon" src="./img/local_bar.svg" alt="icon" width="24" height="24" />
+            Cocktail Lab
+          </a>
+
+          <!-- Dark mode button -->
+          <button id="toggleDarkMode" class="btn btn-sm btn-dark rounded-pill px-3">
+            🌙
+          </button>
+        </div>
+
+        <!-- Desktop layout -->
+        <div class="d-none d-lg-flex justify-content-between align-items-center w-100">
+          <!-- Logo -->
+          <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html">
+            <img class="cocktail-icon" src="./img/local_bar.svg" alt="icon" width="24" height="24" />
+            Cocktail Lab
+          </a>
+
+          <!-- Menu + darkmode -->
+          <div class="d-flex align-items-center">
+            <ul class="navbar-nav d-flex flex-row align-items-center me-3 mb-0">
+              <li class="nav-item hover-scale">
+                <a class="nav-link" href="./index.html">home</a>
+              </li>
+              <li class="nav-item hover-scale">
+                <a class="nav-link active" href="./search.html">search</a>
+              </li>
+              <li class="nav-item hover-scale">
+                <a class="nav-link" href="./contact.html">contact</a>
+              </li>
+            </ul>
+            <button id="toggleDarkModeDesktop" class="btn btn-sm btn-dark rounded-pill px-3">
+              🌙
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile collapsible menu -->
+        <div class="collapse d-lg-none mt-3" id="navbarNavMobile">
+          <ul class="navbar-nav flex-column">
             <li class="nav-item hover-scale">
-              <a class="nav-link active" aria-current="page" href="./index.html">home</a>
+              <a class="nav-link active" href="./index.html">home</a>
             </li>
             <li class="nav-item hover-scale">
-              <a class="nav-link active" aria-current="page" href="./search.html">search</a>
+              <a class="nav-link" href="./search.html">search</a>
             </li>
             <li class="nav-item hover-scale">
               <a class="nav-link" href="./contact.html">contact</a>
@@ -91,7 +135,7 @@
     <!-- Hero Section -->
     <section id="hero" class="position-relative text-center">
       <img
-        src="./img/cocktails3.jpg"
+        src="./img/cocktails.jpg"
         class="img-fluid w-100"
         style="height: 350px; object-fit: cover; filter: brightness(60%)"
         alt="a colourful cocktail on a bar counter"
@@ -110,7 +154,7 @@
             aria-label="Type the name of a cocktail"
             aria-describedby="button-addon2"
           >
-          <button type="submit" class="btn btn-outline-light px-4 rounded-pill">Search</button>
+          <button type="submit" class="searchBtn btn btn-outline-light px-4 rounded-pill">Search</button>
         </form>
       </div>
     </section>
@@ -155,7 +199,7 @@
     <div class="container  mx-auto row mt-4"></div>
     <!-- cards-->
     <div class="container">
-      <div id="searchResults" class="row g-5 ps-4">
+      <div id="searchResults" class="row g-5">
         <!-- cards come here -->
       </div>
     </div>

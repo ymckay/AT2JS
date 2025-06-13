@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Discover new cocktails every day with Cocktail Lab. Find your favourite drinks, learn how to make them, and explore mixology fun!">
     <meta name="keywords" content="cocktail, cocktail recipes, mixology, drink ideas, random cocktails, cocktail search, how to make cocktails">
     <meta name="google-site-verification" content="vKpHnjy7WoQodxBK3BtBZNXQlwEjKV6ukCSh1ILZ25c" />
@@ -46,8 +47,8 @@
     <!-- page title -->
     <title>Cocktail Lab | Random Cocktail Generator & Recipe Finder</title>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-903VNMNEW1"></script>
-    <script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-903VNMNEW1" defer></script>
+    <script defer>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -59,24 +60,68 @@
   <body class="home">
     <!-- Main page showing a random cocktail to explore -->
     <!-- nav -->
-    <nav role="navigation" area-label="main navigation" class="navbar navbar-expand-lg py-2 px-4 sticky-top bg-white shadow">
+    <nav class="navbar navbar-expand-lg py-2 px-4 sticky-top bg-white shadow">
       <div class="container-fluid">
-        <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html"><img src="./img/local_bar.svg" alt="icon" width="24" height="24" />Cocktail Lab</a>
-        <button
-          class="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav d-flex ms-auto">
+
+        <!-- Mobile: hamburger | logo | dark-mode -->
+        <div class="d-flex d-lg-none justify-content-between align-items-center w-100">
+          <!-- Hamburger -->
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavMobile"
+            aria-controls="navbarNavMobile"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Centered logo -->
+          <a class="navbar-brand fw-bold text-center m-0" href="./index.html">
+            <img class="cocktail-icon" src="./img/local_bar.svg" alt="icon" width="24" height="24" />
+            Cocktail Lab
+          </a>
+
+          <!-- Dark mode button -->
+          <button id="toggleDarkMode" class="btn btn-sm btn-dark rounded-pill px-3">
+            🌙
+          </button>
+        </div>
+
+        <!-- Desktop layout -->
+        <div class="d-none d-lg-flex justify-content-between align-items-center w-100">
+          <!-- Logo -->
+          <a class="navbar-brand fs-5 fw-bold hover-scale" href="./index.html">
+            <img class="cocktailIcon" src="./img/local_bar.svg" alt="icon" width="24" height="24" />
+            Cocktail Lab
+          </a>
+
+          <!-- Menu + darkmode -->
+          <div class="d-flex align-items-center">
+            <ul class="navbar-nav d-flex flex-row align-items-center me-3 mb-0">
+              <li class="nav-item hover-scale">
+                <a class="nav-link active" href="./index.html">home</a>
+              </li>
+              <li class="nav-item hover-scale">
+                <a class="nav-link" href="./search.html">search</a>
+              </li>
+              <li class="nav-item hover-scale">
+                <a class="nav-link" href="./contact.html">contact</a>
+              </li>
+            </ul>
+            <button id="toggleDarkModeDesktop" class="btn btn-sm btn-dark rounded-pill px-3">
+              🌙
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile collapsible menu -->
+        <div class="collapse d-lg-none mt-3" id="navbarNavMobile">
+          <ul class="navbar-nav flex-column">
             <li class="nav-item hover-scale">
-              <a class="nav-link active" aria-current="page" href="./index.html">home</a>
+              <a class="nav-link active" href="./index.html">home</a>
             </li>
             <li class="nav-item hover-scale">
               <a class="nav-link" href="./search.html">search</a>
@@ -96,11 +141,18 @@
         <!-- row 1 -->
         <div class="row align-items-center">
           <!-- left - image -->
-          <div id="randomCocktail" class="col-12 col-md-5 mb-4 mb-md-0 text-center">
-            <img id="randomCocktailImage" class="img-fluid w-100 h-100 py-4" src="" alt="Random cocktail image with drink of the day">
+        <div class="col-12 col-md-5 mb-4 mb-md-0 text-center">
+          <div class="d-inline-block mx-4 mx-md-0">
+            <img
+              id="randomCocktailImage"
+              class="img-fluid"
+              src=""
+              alt="Random cocktail image with drink of the day"
+              style="max-width: 100%; height: auto;"
+            />
           </div>
+        </div>
           <!-- end of left - image -->
-
           <!-- right - text and buttons-->
           <div class="col-12 col-md-7 px-3 px-md-5 text-center text-md-start">
             <!-- h1 for iphone -->
@@ -108,7 +160,7 @@
 
             <!-- h1 for tablet -->
             <h1 class="headingTitle d-none d-md-block">Here is your cocktail of the day!</h1>
-            <h2 id="randomCocktailName" aria-live="polite" class="cocktail-name pb-5 mt-2 mb-5 fw-bold"></h2>
+            <h2 id="randomCocktailName" aria-live="polite" class="cocktail-name pb-5 mt-2 mb-2 fw-bold"></h2>
             <p>Not sure what to drink? Try a random one or search for your favourite!</p>
             <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start">
               <a id="newRandom" href="#" aria-label="Get a new random cocktail" class="custom-hover btn btn-outline-dark rounded-pill px-4 mt-3 me-sm-3">Show me another</a>

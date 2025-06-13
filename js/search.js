@@ -56,27 +56,30 @@ async function fetchSearchCocktail(keyword) {
 
     container.innerHTML = "";
 
-    // No Results Found
-    if (!data.drinks) {
-      input.value = "";
-      input.placeholder = "No cocktail found.";
-      input.classList.add("error-placeholder");
+// No Results Found
+if (!data.drinks) {
+  input.value = "";
+  input.placeholder = "No cocktail found.";
+  input.classList.add("error-placeholder");
+
+  const isDark = document.body.classList.contains("dark-mode");
+  const frownImg = isDark ? "./img/emoji-frown-white.svg" : "./img/emoji-frown.svg";
 
   container.innerHTML = `
-  <div class="row justify-content-center my-5">
-    <div class="col-md-8">
-      <div class="search-card p-4 text-center">
-        <img src="./img/emoji-frown.svg" class="frown mb-3 d-block mx-auto" alt="No cocktail" width="40" height="40">
-        <h2 class="fs-4 text-accent fw-semibold">No Cocktail Found</h2>
-        <p class="text-muted mb-0">Try a different keyword 🍸</p>
+    <div class="row justify-content-center my-5">
+      <div class="col-md-8">
+        <div class="search-card p-4 text-center">
+          <img src="${frownImg}" class="frown frown-icon mb-3 d-block mx-auto" alt="No cocktail" width="40" height="40">
+          <h2 class="fs-4 text-accent fw-semibold">No Cocktail Found</h2>
+          <p class="mb-0">Try a different keyword 🍸</p>
+        </div>
       </div>
     </div>
-  </div>
-`;
+  `;
 
-      gsap.from(".frown", { rotation: 180, duration: 3, scale: 2 });
-      return;
-    }
+  gsap.from(".frown", { rotation: 180, duration: 3, scale: 2 });
+  return;
+}
 
     // Display Results
     input.value = "";
@@ -141,3 +144,40 @@ const handleScroll = () => {
   navbar.classList.toggle("hidden-bar", !atTop);
 };
 window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
+
+// Get all buttons for toggling dark mode (both mobile and desktop)
+const toggles = document.querySelectorAll("#toggleDarkMode, #toggleDarkModeDesktop");
+
+// Get body element
+const body = document.body;
+
+// Get all cocktail logo icons (both mobile and desktop)
+const cocktailIcons = document.querySelectorAll(".cocktail-icon");
+
+// Function to update cocktail icon based on theme
+function updateCocktailIcons() {
+  const isDark = body.classList.contains("dark-mode");
+  cocktailIcons.forEach(icon => {
+    icon.src = isDark ? "./img/local_bar_white.svg" : "./img/local_bar.svg";
+  });
+}
+
+// Keep the saved theme even after reloading
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark-mode");
+  toggles.forEach(btn => btn.textContent = "☀️");
+  updateCocktailIcons();
+}
+
+// Toggle dark mode on all matching buttons
+toggles.forEach(toggle => {
+  toggle.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+
+    const isDark = body.classList.contains("dark-mode");
+    toggles.forEach(btn => btn.textContent = isDark ? "☀️" : "🌙");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+    updateCocktailIcons();
+  });
+});
